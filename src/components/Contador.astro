@@ -23,69 +23,71 @@ const diaBoda = 11;
   </div>
 
   <div class="relative z-10">
-    <div class="max-w-4xl mx-auto px-6 text-center mb-16 bg-white/80 rounded-3xl">
-      <h2 class="font-serif text-3xl text-gray-800 mb-10 italic">Faltan tan solo...</h2>
+    <!-- Countdown Container: Responsive width -->
+    <div class="w-full max-w-[260px] md:max-w-4xl mx-auto px-3 text-center mb-24 bg-white/80 rounded-3xl">
+      <h2 class="font-serif text-2xl md:text-3xl text-gray-800 mb-6 md:mb-10 italic">Faltan tan solo...</h2>
       
-      <div id="countdown" class="flex justify-center gap-4 md:gap-8 items-start">
+      <div id="countdown" class="flex justify-center gap-2 md:gap-8 items-start">
         <div class="flex flex-col">
-          <span id="days" class="font-serif text-4xl md:text-6xl text-boda-verde/80">00</span>
-          <span class="font-sans text-[10px] uppercase tracking-widest text-gray-400 mt-4">Días</span>
+          <span id="days" class="font-serif text-3xl md:text-6xl text-boda-verde/80">00</span>
+          <span class="font-sans text-[9px] md:text-[10px] uppercase tracking-widest text-gray-400 mt-2 md:mt-4">Días</span>
         </div>
         
-        <span class="font-serif text-4xl md:text-6xl text-boda-arena/60">:</span>
+        <span class="font-serif text-3xl md:text-6xl text-boda-arena/60">:</span>
 
         <div class="flex flex-col">
-          <span id="hours" class="font-serif text-4xl md:text-6xl text-boda-verde/80">00</span>
-          <span class="font-sans text-[10px] uppercase tracking-widest text-gray-400 mt-4">Horas</span>
+          <span id="hours" class="font-serif text-3xl md:text-6xl text-boda-verde/80">00</span>
+          <span class="font-sans text-[9px] md:text-[10px] uppercase tracking-widest text-gray-400 mt-2 md:mt-4">Horas</span>
         </div>
 
-        <span class="font-serif text-4xl md:text-6xl text-boda-arena/60">:</span>
+        <span class="font-serif text-3xl md:text-6xl text-boda-arena/60">:</span>
 
         <div class="flex flex-col">
-          <span id="minutes" class="font-serif text-4xl md:text-6xl text-boda-verde/80">00</span>
-          <span class="font-sans text-[10px] uppercase tracking-widest text-gray-400 mt-4">Minutos</span>
+          <span id="minutes" class="font-serif text-3xl md:text-6xl text-boda-verde/80">00</span>
+          <span class="font-sans text-[9px] md:text-[10px] uppercase tracking-widest text-gray-400 mt-2 md:mt-4">Minutos</span>
         </div>
 
-        <span class="font-serif text-4xl md:text-6xl text-boda-arena/60">:</span>
+        <span class="font-serif text-3xl md:text-6xl text-boda-arena/60">:</span>
 
         <div class="flex flex-col">
-          <span id="seconds" class="font-serif text-4xl md:text-6xl text-boda-verde/80">00</span>
-          <span class="font-sans text-[10px] uppercase tracking-widest text-gray-400 mt-4">Segundos</span>
+          <span id="seconds" class="font-serif text-3xl md:text-6xl text-boda-verde/80">00</span>
+          <span class="font-sans text-[9px] md:text-[10px] uppercase tracking-widest text-gray-400 mt-2 md:mt-4">Segundos</span>
         </div>
       </div>
     </div>
 
-    <div class="max-w-md mx-auto px-6 text-center bg-boda-verde/80 rounded-3xl">
-      <div class="relative z-10 py-10">
-        <div class="mb-10">
-          <p class="font-sans text-white font-bold uppercase tracking-[0.4em] text-[12px] md:text-[14px]">Julio 2026</p>
+    <!-- Calendar Container: Scales down on mobile, expands on desktop -->
+    <div class="w-full max-w-[300px] md:max-w-lg mx-auto px-4 md:px-6 text-center bg-boda-verde/80 rounded-3xl">
+      <div class="relative z-10 py-8 md:py-12">
+        <div class="mb-6 md:mb-10">
+          <p class="font-sans text-white font-bold uppercase tracking-[0.4em] text-[10px] md:text-[14px]">Julio 2026</p>
         </div>
 
-        <div class="grid grid-cols-7 gap-y-6 items-center">
+        <div class="grid grid-cols-7 gap-y-3 md:gap-y-6 items-center">
           {diasSemana.map((dia) => (
-            <span class="font-sans text-[9px] text-white font-bold tracking-widest">{dia}</span>
+            <span class="font-sans text-[8px] md:text-[9px] text-white font-bold tracking-widest">{dia}</span>
           ))}
 
           {dias.map((dia) => (
-            <div class="relative flex items-center justify-center h-12">
+            <div class="relative flex items-center justify-center h-8 md:h-12">
               {dia === diaBoda ? (
                 <div class="relative flex items-center justify-center">
                   <svg 
                     viewBox="0 0 24 24" 
-                    class="absolute w-14 h-14 text-white fill-none stroke-current animate-pulse-slow"
+                    class="absolute w-8 h-8 md:w-14 md:h-14 text-white fill-none stroke-current animate-pulse-slow"
                     style="stroke-width: 0.8;"
                   >
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                   </svg>
                   
-                  <span class="font-serif text-xl text-white font-bold relative z-10">
+                  <span class="font-serif text-sm md:text-xl text-white font-bold relative z-10">
                     {dia}
                   </span>
                   
-                  <div class="absolute -top-1 -right-1 w-1.5 h-1.5 bg-boda-arena rounded-full border border-white shadow-sm z-20"></div>
+                  <div class="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 w-1 h-1 md:w-1.5 md:h-1.5 bg-boda-arena rounded-full border border-white shadow-sm z-20"></div>
                 </div>
               ) : (
-                <span class={`font-serif text-lg ${dia === '' ? '' : 'text-white/80'}`}>
+                <span class={`font-serif text-sm md:text-lg ${dia === '' ? '' : 'text-white/80'}`}>
                   {dia}
                 </span>
               )}
@@ -93,17 +95,18 @@ const diaBoda = 11;
           ))}
         </div>
 
-        <div class="mt-12 flex flex-col items-center">
+        <div class="mt-6 md:mt-12 flex flex-col items-center">
           <div class="w-12 h-[1px] bg-boda-arena/50 mb-4"></div>
           <p class="font-serif italic text-white text-sm">Sábado, 11 de Julio</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="mt-12">
+  <div class="mt-20">
     <Cancion />
   </div>
 </section>
+<div class="mb-20"></div> <!-- Espacio extra antes del siguiente componente -->
 <div class="bg-boda-verde w-full h-[15px]"></div>
 <style>
   @keyframes pulse-slow {
