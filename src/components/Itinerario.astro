@@ -1,0 +1,155 @@
+---
+import { Church, Wine, Camera, Utensils, Music, Heart } from "@lucide/astro";
+import enredaderaDecorativa from "../assets/flores/Fondo_florez.png";
+import Image from "astro/components/Image.astro";
+
+const eventos = [
+    {
+        hora: "19:00 h",
+        titulo: "Ceremonia Cristiana",
+        lugar: "Salón de eventos Veleros",
+        icon: Church,
+    },
+    {
+        hora: "20:00 h",
+        titulo: "Recepción",
+        lugar: "Salón de eventos Veleros",
+        icon: Wine,
+    },
+    {
+        hora: "21:30 h",
+        titulo: "Sesión de Fotos",
+        lugar: "Salón Principal",
+        icon: Camera,
+    },
+    {
+        hora: "22:00 h",
+        titulo: "Vals y Cena",
+        lugar: "Salón de eventos Veleros",
+        icon: Utensils,
+    },
+    {
+        hora: "23:00 h",
+        titulo: "Actividades y Dinámicas",
+        lugar: "Pista de Baile",
+        icon: Music,
+    },
+    {
+        hora: "01:00 h",
+        titulo: "Cierre del Evento",
+        lugar: "Salón de eventos Veleros",
+        icon: Heart,
+    },
+];
+---
+
+<section
+    id="itinerario"
+    class="py-24 bg-boda-arena/10 overflow-hidden relative"
+>
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-10">
+    <Image
+      src={enredaderaDecorativa} 
+      alt="Fondo decorativo botánico" 
+      class="w-full h-full object-cover"
+    />
+  </div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="reveal text-center mb-20">
+            <h2
+                class="font-serif text-4xl md:text-5xl text-gray-800 italic mb-4"
+            >
+                Itinerario
+            </h2>
+            <p
+                class="font-sans text-gray-600 max-w-2xl mx-auto tracking-[0.3em] text-[10px] uppercase font-bold"
+            >
+                Acompañanos en cada momento
+            </p>
+        </div>
+
+        <div class="reveal relative">
+            <div
+                id="autoCarousel"
+                class="flex gap-8 overflow-x-hidden pb-20 pt-4 px-4 cursor-pointer"
+            >
+                {
+                    eventos.map((evento) => (
+                        <div class="shrink-0 w-[280px] md:w-[320px] carousel-card group">
+                            <div
+                                class="bg-white p-10 rounded-[3rem] border border-boda-arena/10 flex flex-col items-center text-center aspect-[3/4.2] transition-all duration-500 ease-out 
+                        group-hover:scale-[1.03] group-hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)]"
+                            >
+                                <div class="w-24 h-24 rounded-full bg-boda-arena/5 flex items-center justify-center mb-8 border border-boda-arena/10 group-hover:bg-boda-verde/5 transition-colors">
+                                    <evento.icon
+                                        size={48}
+                                        stroke-width={1}
+                                        class="text-boda-verde/60 group-hover:text-boda-verde transition-colors"
+                                    />
+                                </div>
+
+                                <p class="font-serif text-4xl text-gray-800 mb-2">
+                                    {evento.hora}
+                                </p>
+                                <h4 class="font-sans text-[11px] uppercase tracking-[0.25em] text-boda-verde font-bold mb-6">
+                                    {evento.titulo}
+                                </h4>
+
+                                <p class="font-sans text-[10px] text-gray-400 mt-auto pt-6 border-t border-gray-50 w-full italic">
+                                    {evento.lugar}
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function initAutoCarousel() {
+        const track = document.getElementById("autoCarousel");
+        if (!track) return;
+
+        let scrollAmount = 0;
+        let isPaused = false;
+        const speed = 0.8;
+
+        const step = () => {
+            if (!isPaused && track) {
+                scrollAmount += speed;
+
+                // Al llegar al final, vuelve al inicio
+                if (scrollAmount >= track.scrollWidth - track.clientWidth) {
+                    scrollAmount = 0;
+                    track.scrollTo({ left: 0, behavior: "smooth" });
+                } else {
+                    track.scrollLeft = scrollAmount;
+                }
+            }
+            requestAnimationFrame(step);
+        };
+
+        // Eventos de parada
+        track.addEventListener("mouseenter", () => (isPaused = true));
+        track.addEventListener("mouseleave", () => (isPaused = false));
+        track.addEventListener("touchstart", () => (isPaused = true));
+        track.addEventListener("touchend", () =>
+            setTimeout(() => (isPaused = false), 1500),
+        );
+
+        requestAnimationFrame(step);
+    }
+
+    document.addEventListener("astro:page-load", initAutoCarousel);
+    initAutoCarousel();
+</script>
+
+<style>
+    #autoCarousel {
+        display: flex;
+        white-space: nowrap;
+        will-change: scroll-position;
+    }
+</style>

@@ -1,0 +1,178 @@
+---
+import { Volume2, Pause, Play } from "@lucide/astro";
+---
+
+<div class="cancion-player">
+    <button id="audio-toggle" class="toggle-btn" aria-label="Reproducir/Pausar">
+        <Play id="play-icon" class="icon" size={24} />
+        <Pause id="pause-icon" class="icon hidden" size={24} />
+    </button>
+
+    <div class="info">
+        <span class="titulo">Perfect (Instrumental)</span>
+        <span id="audio-time" class="tiempo">0:00</span>
+    </div>
+
+    <div class="volumen">
+        <Volume2 size={18} class="volumen-icon" />
+        <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.8" class="volume-slider" aria-label="Volumen" />
+    </div>
+</div>
+
+<style>
+    .cancion-player {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(166, 164, 139, 0.2);
+        backdrop-filter: blur(4px);
+        border-radius: 9999px;
+        padding: 0.75rem 1.25rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        max-width: 28rem;
+        margin: 0 auto;
+        border: 1px solid rgba(139, 166, 141, 0.3);
+    }
+
+    .toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 9999px;
+        background-color: #8BA68D;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        flex-shrink: 0;
+    }
+
+    .toggle-btn:hover {
+        background-color: #8BA696;
+        transform: scale(1.05);
+    }
+
+    .toggle-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(139, 166, 141, 0.5);
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .titulo {
+        font-family: 'Playfair Display', serif;
+        font-size: 0.875rem;
+        color: #374151;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-style: italic;
+    }
+
+    .tiempo {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.75rem;
+        color: #9CA3AF;
+        letter-spacing: 0.025em;
+    }
+
+    .volumen {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #8BA696;
+        flex-shrink: 0;
+    }
+
+    .volume-slider {
+        width: 5rem;
+        height: 0.25rem;
+        border-radius: 9999px;
+        background: rgba(166, 164, 139, 0.5);
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 9999px;
+        background: #8BA696;
+        cursor: pointer;
+    }
+
+    .volume-slider::-moz-range-thumb {
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 9999px;
+        background: #8BA696;
+        cursor: pointer;
+        border: none;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+</style>
+
+<script is:inline>
+    const audio = document.getElementById("audio-player");
+    const toggleBtn = document.getElementById("audio-toggle");
+    const playIcon = document.getElementById("play-icon");
+    const pauseIcon = document.getElementById("pause-icon");
+    const timeDisplay = document.getElementById("audio-time");
+    const volumeSlider = document.getElementById("audio-volume");
+
+    let isPlaying = false;
+
+    audio?.addEventListener("play", () => {
+        isPlaying = true;
+        playIcon?.classList.add("hidden");
+        pauseIcon?.classList.remove("hidden");
+    });
+
+    audio?.addEventListener("pause", () => {
+        isPlaying = false;
+        playIcon?.classList.remove("hidden");
+        pauseIcon?.classList.add("hidden");
+    });
+
+    function togglePlay() {
+        if (!audio) return;
+        if (isPlaying) {
+            audio.pause();
+        } else {
+            audio.play();
+        }
+    }
+
+    toggleBtn?.addEventListener("click", togglePlay);
+
+    audio?.addEventListener("timeupdate", () => {
+        const mins = Math.floor(audio.currentTime / 60);
+        const secs = Math.floor(audio.currentTime % 60).toString().padStart(2, "0");
+        if (timeDisplay) timeDisplay.textContent = `${mins}:${secs}`;
+    });
+
+    audio?.addEventListener("ended", () => {
+        isPlaying = false;
+        playIcon?.classList.remove("hidden");
+        pauseIcon?.classList.add("hidden");
+        if (timeDisplay) timeDisplay.textContent = "0:00";
+    });
+
+    volumeSlider?.addEventListener("input", (e) => {
+        if (audio) audio.volume = parseFloat(e.target.value);
+    });
+</script>

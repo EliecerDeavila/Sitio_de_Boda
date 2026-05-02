@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import qrImagen from '../assets/Qr.jpeg';
+import foto1 from '../assets/O&D_70.JPG';
+import foto2 from '../assets/O&D_17.JPG';
+import { Mail } from '@lucide/astro';
+---
+
+<section id="regalos" class="py-20 bg-white overflow-hidden">
+    <div class="reveal reveal-subir max-w-6xl mx-auto px-6">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Columna Izquierda: Texto y QR -->
+            <div class="text-center flex flex-col items-center">
+                <div class="mb-6 flex justify-center text-boda-verde" style="animation: var(--animate-flotar);">
+                    <Mail size={40} />
+                </div>
+
+                <h2 class="font-serif text-4xl text-gray-800 mb-6 italic">Lluvia de Sobres</h2>
+                
+                <p class="font-sans text-gray-600 leading-relaxed mb-8 tracking-wide">
+                    Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle con nosotros, 
+                    contaremos con un sobre para tus buenos deseos el día del evento o puedes hacerlo a través de nuestra cuenta:
+                </p>
+
+                <div class="mb-8 flex flex-col items-center justify-center space-y-4">
+                    <div class="p-3 bg-white border border-boda-arena/30 rounded-2xl shadow-sm inline-block">
+                        <Image 
+                            src={qrImagen} 
+                            alt="Código QR para regalo" 
+                            width={180} 
+                            height={180}
+                            format="webp"
+                            class="rounded-lg"
+                        />
+                    </div>
+                    <p class="font-sans text-[10px] uppercase tracking-widest text-boda-verde font-semibold">
+                        Escanea para transferencia
+                    </p>
+                </div>
+
+                <div class="bg-boda-arena/5 p-6 rounded-2xl border border-dashed border-boda-arena/50 max-w-md mx-auto">
+                    <p class="font-serif text-boda-verde-oscuro text-lg italic mb-1">
+                        ¡Muchas gracias por ser parte de nuestra historia!
+                    </p>
+                    <p class="font-sans text-[10px] uppercase tracking-[0.3em] text-gray-400">
+                        Orlando & Daniela • 2026
+                    </p>
+                </div>
+            </div>
+
+            <!-- Columna Derecha: Fotos Horizontales -->
+            <div class="flex flex-col gap-6 items-center">
+                <div class="w-full max-w-sm rounded-3xl overflow-hidden shadow-lg border-4 border-white/50 transform -rotate-2">
+                    <Image 
+                        src={foto1} 
+                        alt="Recuerdo Orlando y Daniela 1" 
+                        class="w-full h-auto object-cover aspect-[4/3]"
+                        format="webp"
+                    />
+                </div>
+                
+                <div class="w-full max-w-sm rounded-3xl overflow-hidden shadow-lg border-4 border-white/50 transform rotate-2 -mt-8">
+                    <Image 
+                        src={foto2} 
+                        alt="Recuerdo Orlando y Daniela 2" 
+                        class="w-full h-auto object-cover aspect-[4/3]"
+                        format="webp"
+                    />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

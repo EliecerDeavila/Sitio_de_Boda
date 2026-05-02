@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --color-boda-arena: #F5F5DC;
+  --color-boda-verde: #8BA68D;
+  --color-boda-verde-dark: #8BA696;
+  
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
+
+  /* Animaciones */
+  --animate-entrada: aparecer 0.8s ease-out forwards;
+  --animate-subir: aparecer-subir 1s ease-out forwards;
+  --animate-revelar: revelar-derecha 1.2s ease-in-out forwards;
+  --animate-zoom-lento: zoom-suave 10s infinite alternate;
+  --animate-brillo: brillar 2s infinite;
+  --animate-flotar: flotar-suave 4s ease-in-out infinite;
+
+  @keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes aparecer-subir {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes revelar-derecha {
+    0% { clip-path: inset(0 100% 0 0); }
+    100% { clip-path: inset(0 0 0 0); }
+  }
+
+  @keyframes zoom-suave {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+  }
+
+  @keyframes brillar {
+    0%, 100% { box-shadow: 0 0 5px rgba(139, 166, 141, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(139, 166, 141, 0.6); }
+  }
+
+  @keyframes flotar-suave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+/* LÓGICA DE REVELACIÓN */
+@layer components {
+  .reveal {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(40px) !important;
+    will-change: opacity, transform;
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out, visibility 1.2s !important;
+  }
+
+  .reveal.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+
+  .reveal-subir.active {
+    animation: var(--animate-subir) !important;
+  }
+}

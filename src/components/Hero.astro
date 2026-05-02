@@ -1,0 +1,73 @@
+---
+import { Image } from 'astro:assets';
+import fotoPortada from "../assets/fotoPortada.jpg";
+import Versiculo from './Versiculo.astro';
+---
+
+<section id="inicio" class="relative flex items-center overflow-hidden bg-white">
+    <div class="grid grid-cols-1 md:grid-cols-2 w-full">
+        
+        <!-- Aumentamos la altura a 75vh en móvil para que quepa la pareja completa -->
+        <div class="relative h-[75vh] min-h-[500px] md:h-screen w-full overflow-hidden order-1">
+            <Image 
+                src={fotoPortada} 
+                alt="Orlando y Daniela"
+                format="webp" 
+                widths={[420, 800, 1200]} 
+                sizes="(max-width: 768px) 100vw, 50vw"
+                class="absolute inset-0 w-full h-full object-cover object-top animate-zoom-lento"
+                loading="eager"
+            />
+            <div class="absolute inset-0 bg-boda-verde-oscuro/5 z-10"></div>
+        </div>
+
+        <div class="flex flex-col justify-center items-center px-6 py-12 md:p-20 bg-white order-2">
+            <div class="w-full max-w-md flex flex-col items-center text-center animate-entrada-suave">
+                
+                <span class="font-sans text-[10px] md:text-xs uppercase tracking-[0.5em] text-gray-800 mb-6 block">
+                    Con la bendición de Díos y de nuestros padres tenemos el gusto de invitarte a 
+                </span>
+
+                <h1 class="font-serif text-5xl md:text-7xl  text-boda-verde-dark  mb-8 leading-tight">
+                    Nuestra <br /> Boda
+                </h1>
+
+                <div class="flex justify-center items-center gap-4 mb-10 w-full">
+                    <div class="flex-1 h-[1px] bg-boda-arena max-w-[40px]"></div>
+                    <p class="font-serif text-2xl md:text-3xl text-boda-verde-oscuro italic">
+                        Orlando & Daniela
+                    </p>
+                    <div class="flex-1 h-[1px] bg-boda-arena max-w-[40px]"></div>
+                </div>
+
+                <div class="space-y-2 mb-10">
+                    <p class="font-sans text-xl tracking-[0.2em] text-gray-600 uppercase font-light">11 de Julio</p>
+                    <p class="font-sans text-xs text-gray-400 uppercase tracking-widest">2026 • Cartagena, Colombia</p>
+                </div>
+
+                <div class="w-full">
+                    <Versiculo />
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .animate-zoom-lento {
+        /* Cambiado a 'infinite alternate' para que el zoom nunca se detenga */
+        animation: zoomLento 15s ease-in-out infinite alternate;
+    }
+    @keyframes zoomLento {
+        from { transform: scale(1); }
+        to { transform: scale(1.15); }
+    }
+    .animate-entrada-suave {
+        animation: entradaSuave 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+    @keyframes entradaSuave {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>

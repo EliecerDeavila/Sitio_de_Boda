@@ -1,0 +1,155 @@
+---
+import { Image } from 'astro:assets';
+import papelBlanco from "../assets/papel3.jpg";
+import Cancion from "../components/Cancion.astro";
+const diasSemana = ['LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB', 'DOM'];
+const dias = [
+  '', '', 1, 2, 3, 4, 5,
+  6, 7, 8, 9, 10, 11, 12,
+  13, 14, 15, 16, 17, 18, 19,
+  20, 21, 22, 23, 24, 25, 26,
+  27, 28, 29, 30, 31
+];
+const diaBoda = 11;
+---
+
+<section class="py-16 pb-24 reveal relative overflow-hidden">
+  <div class="absolute inset-0 z-0 pointer-events-none opacity-20">
+    <Image 
+      src={papelBlanco} 
+      alt="Fondo decorativo papel blanco" 
+      class="w-full h-full object-cover"
+    />
+  </div>
+
+  <div class="relative z-10">
+    <div class="max-w-4xl mx-auto px-6 text-center mb-16 bg-white/80 rounded-3xl">
+      <h2 class="font-serif text-3xl text-gray-800 mb-10 italic">Faltan tan solo...</h2>
+      
+      <div id="countdown" class="flex justify-center gap-4 md:gap-8 items-start">
+        <div class="flex flex-col">
+          <span id="days" class="font-serif text-4xl md:text-6xl text-boda-verde/80">00</span>
+          <span class="font-sans text-[10px] uppercase tracking-widest text-gray-400 mt-4">Días</span>
+        </div>
+        
+        <span class="font-serif text-4xl md:text-6xl text-boda-arena/60">:</span>
+
+        <div class="flex flex-col">
+          <span id="hours" class="font-serif text-4xl md:text-6xl text-boda-verde/80">00</span>
+          <span class="font-sans text-[10px] uppercase tracking-widest text-gray-400 mt-4">Horas</span>
+        </div>
+
+        <span class="font-serif text-4xl md:text-6xl text-boda-arena/60">:</span>
+
+        <div class="flex flex-col">
+          <span id="minutes" class="font-serif text-4xl md:text-6xl text-boda-verde/80">00</span>
+          <span class="font-sans text-[10px] uppercase tracking-widest text-gray-400 mt-4">Minutos</span>
+        </div>
+
+        <span class="font-serif text-4xl md:text-6xl text-boda-arena/60">:</span>
+
+        <div class="flex flex-col">
+          <span id="seconds" class="font-serif text-4xl md:text-6xl text-boda-verde/80">00</span>
+          <span class="font-sans text-[10px] uppercase tracking-widest text-gray-400 mt-4">Segundos</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-md mx-auto px-6 text-center bg-boda-verde/80 rounded-3xl">
+      <div class="relative z-10 py-10">
+        <div class="mb-10">
+          <p class="font-sans text-white font-bold uppercase tracking-[0.4em] text-[12px] md:text-[14px]">Julio 2026</p>
+        </div>
+
+        <div class="grid grid-cols-7 gap-y-6 items-center">
+          {diasSemana.map((dia) => (
+            <span class="font-sans text-[9px] text-white font-bold tracking-widest">{dia}</span>
+          ))}
+
+          {dias.map((dia) => (
+            <div class="relative flex items-center justify-center h-12">
+              {dia === diaBoda ? (
+                <div class="relative flex items-center justify-center">
+                  <svg 
+                    viewBox="0 0 24 24" 
+                    class="absolute w-14 h-14 text-white fill-none stroke-current animate-pulse-slow"
+                    style="stroke-width: 0.8;"
+                  >
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                  </svg>
+                  
+                  <span class="font-serif text-xl text-white font-bold relative z-10">
+                    {dia}
+                  </span>
+                  
+                  <div class="absolute -top-1 -right-1 w-1.5 h-1.5 bg-boda-arena rounded-full border border-white shadow-sm z-20"></div>
+                </div>
+              ) : (
+                <span class={`font-serif text-lg ${dia === '' ? '' : 'text-white/80'}`}>
+                  {dia}
+                </span>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 flex flex-col items-center">
+          <div class="w-12 h-[1px] bg-boda-arena/50 mb-4"></div>
+          <p class="font-serif italic text-white text-sm">Sábado, 11 de Julio</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-12">
+    <Cancion />
+  </div>
+</section>
+<div class="bg-boda-verde w-full h-[15px]"></div>
+<style>
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.05); }
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+</style>
+
+<script is:inline>
+  let cleanup = null;
+
+  function updateCountdown() {
+    if (cleanup) clearInterval(cleanup);
+
+    const eventDate = new Date('July 11, 2026 17:00:00').getTime();
+    cleanup = setInterval(() => {
+      const now = new Date().getTime();
+      const diff = eventDate - now;
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      const daysEl = document.getElementById('days');
+      const hoursEl = document.getElementById('hours');
+      const minsEl = document.getElementById('minutes');
+      const secsEl = document.getElementById('seconds');
+
+      if (daysEl) daysEl.innerText = d.toString().padStart(2, '0');
+      if (hoursEl) hoursEl.innerText = h.toString().padStart(2, '0');
+      if (minsEl) minsEl.innerText = m.toString().padStart(2, '0');
+      if (secsEl) secsEl.innerText = s.toString().padStart(2, '0');
+
+      if (diff < 0) {
+        clearInterval(cleanup);
+        cleanup = null;
+        const container = document.getElementById('countdown');
+        if (container) container.innerHTML = "<p class='font-serif text-2xl text-boda-verde'>¡Hoy es el gran día!</p>";
+      }
+    }, 1000);
+  }
+
+  updateCountdown();
+  document.addEventListener('astro:after-swap', updateCountdown);
+</script>
