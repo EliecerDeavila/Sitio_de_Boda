@@ -1,79 +1,69 @@
-# 🚀 Astro Clean Template
+# 💒 Sitio Web de Boda - Orlando & Daniela
 
-A minimal, SEO-ready Astro template with Tailwind CSS integration to kickstart your web projects.
+Invitación digital interactiva para la celebración de nuestra boda. Desarrollada con [Astro](https://astro.build) y [Tailwind CSS](https://tailwindcss.com), esta web ofrece una experiencia elegante, rápida y totalmente adaptada a móviles y escritorio.
 
-## ✨ Features
-
-- ⚡️ **Astro** - The modern web framework for building fast, content-focused websites
-- 🎨 **Tailwind CSS** - A utility-first CSS framework packed with classes
-- 🔎 **SEO Optimized** - Includes essential meta tags for better search engine visibility
-- 📝 **Clean Code** - Well-structured and maintainable codebase
+## ✨ Características
+- 📱 **Diseño Responsive** - Optimizado para todos los dispositivos y tamaños de pantalla
+- ⏳ **Cuenta Regresiva** - Timer en tiempo real con calendario visual hasta el día del evento
+- 🖼️ **Galería Interactiva** - Lightbox con navegación por teclado y efectos de hover
+- 🎵 **Reproductor de Audio** - Música ambiental personalizada con controles de volumen y tiempo
+- 🎁 **Lluvia de Sobres** - Información de regalos con QR para transferencias bancarias
+- 📥 **Plantillas Descargables** - Marcos exclusivos para fotos de invitados con QR integrados
+- 🚀 **Rendimiento Óptimo** - Imágenes WebP optimizadas automáticamente por Astro
+- 🔍 **SEO Integrado** - Meta tags, Open Graph y Twitter Cards preconfigurados
 
 ## 🛠️ Tech Stack
+- [Astro 5](https://astro.build) - Framework web centrado en contenido
+- [Tailwind CSS 4](https://tailwindcss.com) - Estilos utility-first con Vite
+- [Lucide Icons](https://lucide.dev) - Iconografía moderna y ligera
 
-- [Astro](https://astro.build)
-- [Tailwind CSS](https://tailwindcss.com)
+## 🚀 Guía de Desarrollo
 
-## 🚀 Getting Started
-
-1. Create a new project using this template:
-   ```bash
-   npm create astro  -- --template SofiDevO/pantilla-astro
-   ```
-
-2. Install dependencies:
+1. **Instalar dependencias:**
    ```bash
    npm install
    ```
 
-3. Start the development server:
+2. **Iniciar servidor de desarrollo:**
    ```bash
    npm run dev
    ```
+   Abre `http://localhost:4321` en tu navegador.
 
-4. Open your browser and visit `http://localhost:4321`
+3. **Generar build para producción:**
+   ```bash
+   npm run build
+   ```
+   Los archivos estáticos optimizados se generarán en la carpeta `dist/`.
 
-## 📁 Project Structure
-
+## 📁 Estructura del Proyecto
 ```
 /
 ├── public/
-│   ├── favicon.svg
-│   └── images/
-│       └── portada.png
+│   ├── plantillas/          # Marcos descargables para invitados
+│   └── images/              # Assets estáticos (logo, favicon)
 ├── src/
-│   ├── components/
-│   │   └── BaseHead.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   ├── pages/
-│   │   ├── index.astro
-│   │   └── 404.astro
-│   └── styles/
-│       └── global.css
+│   ├── assets/              # Imágenes, audios y fuentes procesadas
+│   ├── components/          # Componentes modulares (Hero, Contador, Galería, etc.)
+│   ├── layout/              # Layout principal y navegación
+│   ├── pages/               # Rutas y página de entrada
+│   └── styles/              # CSS global, animaciones y tema Tailwind
+├── astro.config.mjs
+├── netlify.toml             # Configuración de despliegue
 └── package.json
 ```
 
-## 🔧 Configuration
+## 🌐 Despliegue
+Este proyecto está listo para plataformas de hosting estático.
 
-### SEO Configuration
+- **Netlify:** Configurado mediante `netlify.toml`. Solo conecta el repositorio en [app.netlify.com](https://app.netlify.com) o arrastra la carpeta `dist/` a [Netlify Drop](https://app.netlify.com/drop).
+- **Vercel / GitHub Pages:** Compatible sin configuración adicional.
 
-The template includes a `BaseHead.astro` component that handles all SEO-related meta tags. It supports:
+## 🎨 Personalización
+- **Colores y Tipografía:** Modifica `@theme` en `src/styles/global.css`
+- **Fecha del Evento:** Ajusta la fecha en `src/components/Contador.astro`
+- **Música Ambiental:** Reemplaza el archivo en `src/assets/audio/`
+- **Imágenes de Fondo:** Actualiza las referencias en `Hero.astro` y `SplashScreen.astro`
 
-- Title and description meta tags
-- Open Graph meta tags for social sharing
-- Twitter Card meta tags
-- Canonical URL
-- Favicon
-
-### Tailwind Configuration
-
-Tailwind CSS is pre-configured and ready to use. Customization can be done through the Astro configuration file (`astro.config.mjs`).
-
-## 📝 License
-
-MIT License - feel free to use this template for any project!
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
+## 📝 Licencia
+Uso personal y privado para la celebración de bodas.
